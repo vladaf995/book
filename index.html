@@ -10,23 +10,34 @@
   <body>
     <header class="header">
       <div class="header__logo"><img src="./img/B (2).png" alt="" /></div>
-      <div class="header__search-bar">
-        <input type="text" />
-        <button><img src="/img/search.png" alt="" /></button>
+      <div class="header__search-bar visibility">
+        <input id="input" type="text" value="" />
+        <button id="search-button"><img src="/img/search.png" alt="" /></button>
       </div>
     </header>
     <menu class="menu">
-      <p>Home</p>
-      <p>Books</p>
+      <div class="menu__item">
+        <p id="show-home-page">Home</p>
+        <p id="show-page-book">Books</p>
+      </div>
+      <div class="menu__checkbox visibility">
+        <input id="checkbox" type="checkbox" value="" />
+        <span>Adult content</span>
+      </div>
     </menu>
     <section class="container">
       <p>Best rating</p>
       <div id="best-rating" class="container__wrapper"></div>
     </section>
     <section class="container">
-      <p>Most reviews by genre</p>
+      <p id="genre-name">Most reviews by genre:</p>
       <div id="most-reviews" class="container__wrapper"></div>
     </section>
+    <section class="page-book hidden">
+      <div class="page-book__genre"></div>
+      <div class="page-book__item"></div>
+    </section>
+    <section class="show-book-id"></section>
     <script src="./js/script.js"></script>
   </body>
 </html>

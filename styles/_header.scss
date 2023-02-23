@@ -2,8 +2,9 @@
   height: 150px;
   background-color: $color-gray;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
+  padding: 0 300px;
 
   &__search-bar {
     display: flex;

@@ -1,0 +1,47 @@
+.show-book-id {
+  background-color: $color-gray-light;
+  padding: 50px 200px;
+
+  &__wrapper {
+    display: flex;
+    > img {
+      width: 300px;
+      height: 400px;
+    }
+
+    &__card-info {
+      padding: 0 50px;
+
+      > h2 {
+        font-size: 22px;
+        text-transform: initial;
+        border-bottom: 2px solid $color-orange;
+      }
+
+      > p {
+        font-size: 20px;
+        font-style: italic;
+        padding: 8px 0;
+      }
+
+      > span {
+        font-size: 20px;
+        font-style: italic;
+        padding: 3px;
+      }
+    }
+  }
+
+  &__description {
+    padding-top: 20px;
+
+    > h3 {
+      border-bottom: 2px solid $color-orange;
+    }
+
+    > p {
+      padding-top: 30px;
+      font-size: 18px;
+    }
+  }
+}

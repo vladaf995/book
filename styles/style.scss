@@ -2,8 +2,18 @@
 @import "header";
 @import "menu";
 @import "book-rating";
+@import "page-book";
+@import "show-book-id";
 
 * {
   box-sizing: border-box;
   margin: 0;
+}
+
+.hidden {
+  display: none;
+}
+
+.visibility {
+  visibility: hidden;
 }

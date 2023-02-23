@@ -1,15 +1,30 @@
 .menu {
   display: flex;
-  justify-content: center;
-  padding: 30px 0;
+  justify-content: space-between;
 
-  :last-child {
-    margin-left: 50px;
+  padding: 30px 500px;
+
+  &__item {
+    display: flex;
+
+    > p {
+      font-size: 25px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-left: 50px;
+    }
   }
 
-  > p {
-    font-size: 25px;
+  &__checkbox {
+    margin-left: 50px;
+    font-size: 18px;
     font-weight: bold;
-    cursor: pointer;
+    display: flex;
+    align-self: flex-end;
+    justify-content: flex-end;
+
+    > span {
+      margin-left: 5px;
+    }
   }
 }
