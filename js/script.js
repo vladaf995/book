@@ -221,12 +221,11 @@ window.addEventListener("load", async () => {
     checkBoxContainer.classList.remove("visibility");
     pageBookItem.innerHTML = "";
 
-    allBooksFromAPI.results.forEach((item, index) => {
+    const bookInforamtions = (item, index) => {
       let newsDiv = document.createElement("div");
       newsDiv.classList.add("page-book__item__card");
 
       let showImg = document.createElement("img");
-
       if (item.img) {
         showImg.setAttribute("src", item.img);
         showImg.setAttribute("alt", item.title);
@@ -251,6 +250,13 @@ window.addEventListener("load", async () => {
       });
 
       pageBookItem.appendChild(newsDiv);
+    };
+
+    allBooksFromAPI.results.forEach((item, index) => {
+      let currentBookGenres = item.genre.split(",");
+      if (!currentBookGenres.some((el) => adultGenres.includes(el))) {
+        bookInforamtions(item, index);
+      }
     });
 
     checkBox.addEventListener("change", () => {
@@ -262,7 +268,27 @@ window.addEventListener("load", async () => {
           displayGenre(item);
         }
       });
+
+      pageBookItem.innerHTML = "";
+      allBooksFromAPI.results.forEach((item, index) => {
+        bookInforamtions(item, index);
+      });
     });
+
+    let displayGenre = (item) => {
+      let genreList = document.createElement("p");
+      genreList.innerHTML = item;
+      genreList.addEventListener("click", () => {
+        pageBookItem.innerHTML = "";
+
+        allBooksFromAPI.results.forEach((e, index) => {
+          if (e.genre.includes(item)) {
+            bookInforamtions(e, index);
+          }
+        });
+      });
+      pageBookGenre.appendChild(genreList);
+    };
 
     allGenres.sort();
     allGenres.forEach((item) => {
@@ -282,38 +308,7 @@ window.addEventListener("load", async () => {
         if (
           item.title.toString().toLowerCase().includes(inputValue.toLowerCase())
         ) {
-          let newsDiv = document.createElement("div");
-          newsDiv.classList.add("page-book__item__card");
-
-          let showImg = document.createElement("img");
-
-          if (item.img) {
-            showImg.setAttribute("src", item.img);
-            showImg.setAttribute("alt", item.title);
-          } else {
-            showImg.setAttribute(
-              "src",
-              "https://shmector.com/_ph/6/708614587.png"
-            );
-          }
-          newsDiv.appendChild(showImg);
-
-          let title = document.createElement("p");
-          title.innerHTML = item.title;
-          newsDiv.appendChild(title);
-
-          let rating = document.createElement("p");
-          rating.innerHTML = `Rating: ${item.rating}`;
-          newsDiv.appendChild(rating);
-
-          newsDiv.addEventListener("click", () => {
-            pageBook.classList.add("hidden");
-            showBookIDPage.classList.remove("hidden");
-            showBookIDPage.innerHTML = "";
-            showBook("all-books", index);
-          });
-
-          pageBookItem.appendChild(newsDiv);
+          bookInforamtions(item, index);
         }
       });
     });
@@ -328,49 +323,3 @@ backToHomePage.addEventListener("click", () => {
   searchBar.classList.add("visibility");
   checkBoxContainer.classList.add("visibility");
 });
-
-let displayGenre = (item) => {
-  let genreList = document.createElement("p");
-  genreList.innerHTML = item;
-  genreList.addEventListener("click", () => {
-    pageBookItem.innerHTML = "";
-
-    allBooksFromAPI.results.forEach((itemm, index) => {
-      if (itemm.genre.includes(item)) {
-        let newsDiv = document.createElement("div");
-        newsDiv.classList.add("page-book__item__card");
-
-        let showImg = document.createElement("img");
-
-        if (itemm.img) {
-          showImg.setAttribute("src", itemm.img);
-          showImg.setAttribute("alt", itemm.title);
-        } else {
-          showImg.setAttribute(
-            "src",
-            "https://shmector.com/_ph/6/708614587.png"
-          );
-        }
-        newsDiv.appendChild(showImg);
-
-        let title = document.createElement("p");
-        title.innerHTML = itemm.title;
-        newsDiv.appendChild(title);
-
-        let rating = document.createElement("p");
-        rating.innerHTML = `Rating: ${itemm.rating}`;
-        newsDiv.appendChild(rating);
-
-        newsDiv.addEventListener("click", () => {
-          pageBook.classList.add("hidden");
-          showBookIDPage.classList.remove("hidden");
-          showBookIDPage.innerHTML = "";
-          showBook("all-books", index);
-        });
-
-        pageBookItem.appendChild(newsDiv);
-      }
-    });
-  });
-  pageBookGenre.appendChild(genreList);
-};

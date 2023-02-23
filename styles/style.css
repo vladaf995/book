@@ -63,6 +63,7 @@
 .container__wrapper__card {
   width: 300px;
   background-color: #fff;
+  cursor: pointer;
 }
 .container__wrapper__card > img {
   width: 100%;
@@ -101,6 +102,7 @@
 .page-book__item__card {
   width: 300px;
   background-color: #fff;
+  cursor: pointer;
 }
 .page-book__item__card > img {
   width: 100%;
